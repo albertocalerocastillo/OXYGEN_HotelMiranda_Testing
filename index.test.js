@@ -44,20 +44,21 @@ describe('Clase Room', () => {
 });
 
 describe('Clase Booking', () => {
-  test('debería crear una instancia de Booking', () => {
-    const room = new Room('Habitación Deluxe', [], 10000, 10);
-    const booking = new Booking('Alberto Calero', 'Alberto@example.com', new Date('2025-01-01'), new Date('2025-01-05'), 5, room);
-    expect(booking.name).toBe('Alberto Calero');
-    expect(booking.email).toBe('Alberto@example.com');
-    expect(booking.checkIn).toEqual(new Date('2025-01-01'));
-    expect(booking.checkOut).toEqual(new Date('2025-01-05'));
-    expect(booking.discount).toBe(5);
-    expect(booking.room).toBe(room);
-  });
-
-  test('debería devolver la tarifa de la reserva', () => {
-    const room = new Room('Habitación Deluxe', [], 10000, 10);
-    const booking = new Booking('Alberto Calero', 'Alberto@example.com', new Date('2025-01-01'), new Date('2025-01-05'), 5, room);
-    expect(booking.fee).toBe(0);
-  });
+    test('debería crear una instancia de Booking', () => {
+      const room = new Room('Habitación Deluxe', [], 10000, 10);
+      const booking = new Booking('Alberto Calero', 'alberto@example.com', new Date('2025-01-01'), new Date('2025-01-05'), 5, room);
+      expect(booking.name).toBe('Alberto Calero');
+      expect(booking.email).toBe('alberto@example.com');
+      expect(booking.checkIn).toEqual(new Date('2025-01-01'));
+      expect(booking.checkOut).toEqual(new Date('2025-01-05'));
+      expect(booking.discount).toBe(5);
+      expect(booking.room).toBe(room);
+    });
+  
+    test('debería devolver la tarifa de la reserva', () => {
+      const room = new Room('Habitación Deluxe', [], 10000, 10);
+      const booking = new Booking('Alberto Calero', 'alberto@example.com', new Date('2025-01-01'), new Date('2025-01-05'), 5, room);
+      const expectedFee = 10000 * 0.9 * 0.95 * 4;
+      expect(booking.fee).toBe(expectedFee);
+    });
 });
